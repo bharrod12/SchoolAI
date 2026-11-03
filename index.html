@@ -4,110 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SchoolAI Course FAQ Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Michigan Virtual brand standards: https://michiganvirtual.org/brand */
 :root{
-  --bg:#f5f7fa; --card:#ffffff; --ink:#1c2733; --muted:#5b6b7b; --line:#d7dee6;
-  --brand:#1f5f99; --brand-ink:#ffffff; --brand-soft:#e3eef8; --ok:#1d7a46; --warn:#9a6700; --bad:#b42318;
-  --code-bg:#f1f4f8; --focus:#f0a400;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0f151c; --card:#18212b; --ink:#e8eef4; --muted:#9db0c2; --line:#2c3a48;
-    --brand:#5aa6e6; --brand-ink:#08131d; --brand-soft:#1a2c3d; --ok:#4cc38a; --warn:#e0b04a; --bad:#ff7b6e;
-    --code-bg:#111a23; --focus:#f0b429;
-  }
+  --black-teal:#091d20; --deep-teal:#093c44; --dark-teal:#115e6e; --light-teal:#2f8d98;
+  --bright-teal:#c7dee0; --white-teal:#f3fafc;
+  --green:#b5cd34; --a11y-green:#6a7f17;
+  --orange:#f7941e; --a11y-orange:#a84c2a; --white-orange:#fff4e7; --pale-orange:#e4b782;
+  --gray:#414042; --light-gray:#6d6e71;
 }
 *{box-sizing:border-box}
-html{font-size:16px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
-a{color:var(--brand)}
-header.top{background:var(--card);border-bottom:1px solid var(--line);padding:18px 20px}
-header.top .wrap{max-width:1040px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-header.top h1{font-size:1.35rem;margin:0}
-header.top p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
-.tools{display:flex;gap:8px;flex-wrap:wrap}
-main{max-width:1040px;margin:0 auto;padding:20px;display:grid;grid-template-columns:230px 1fr;gap:22px}
-@media (max-width:780px){ main{grid-template-columns:1fr} }
-nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-@media (max-width:780px){ nav.steps ol{flex-direction:row;overflow-x:auto;padding-bottom:6px} nav.steps li{flex:0 0 auto} }
-nav.steps button{width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:8px;padding:9px 11px;color:var(--ink);font:inherit;cursor:pointer;display:flex;gap:9px;align-items:center}
-nav.steps button:hover{background:var(--brand-soft)}
-nav.steps button[aria-current="step"]{background:var(--brand-soft);border-color:var(--brand);font-weight:600}
-nav.steps .num{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;flex:0 0 auto;color:var(--brand)}
-nav.steps button[aria-current="step"] .num{background:var(--brand);color:var(--brand-ink)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-.card h2{margin:0 0 4px;font-size:1.25rem}
-.card .lead{margin:0 0 18px;color:var(--muted)}
-.card h3{font-size:1.02rem;margin:22px 0 6px}
-label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 4px}
-.hint{font-weight:400;color:var(--muted);font-size:.85rem;display:block;margin-top:1px}
-input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
-input,select,textarea{font-weight:400}
-textarea{min-height:92px;resize:vertical}
-textarea.tall{min-height:200px}
-textarea.mono,pre.mono{font-family:ui-monospace,Consolas,Menlo,monospace;font-size:.85rem}
-input:focus,select:focus,textarea:focus,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+html{font-size:16px;color-scheme:light}
+body{margin:0;background:var(--white-teal);color:var(--black-teal);font-family:"Figtree","Roboto","Noto Sans",Helvetica,Aptos,Arial,sans-serif;line-height:1.55}
+
+header.top{background:var(--deep-teal);color:#fff;padding:30px 20px 26px;border-bottom:6px solid var(--green)}
+header.top .wrap{max-width:1080px;margin:0 auto}
+header.top h1{margin:0;font-size:2rem;line-height:1.15;font-weight:700;letter-spacing:-.01em}
+header.top p{margin:8px 0 0;font-size:1.05rem;opacity:.92;max-width:46rem}
+
+main{max-width:1080px;margin:0 auto;padding:28px 20px 12px;display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start}
+@media (max-width:800px){ main{grid-template-columns:1fr;padding-top:18px} }
+
+nav.steps{position:sticky;top:16px}
+@media (max-width:800px){ nav.steps{position:static} }
+#progress{background:#fff;border:1px solid var(--bright-teal);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.9rem;color:var(--gray)}
+#progress strong{color:var(--deep-teal)}
+.bar{height:8px;background:var(--bright-teal);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .3s}
+nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+@media (max-width:800px){ nav.steps ol{flex-direction:row;overflow-x:auto;padding-bottom:6px} nav.steps li{flex:0 0 auto} }
+nav.steps button{width:100%;text-align:left;background:transparent;border:0;border-radius:10px;padding:9px 11px;color:var(--black-teal);font:inherit;font-weight:500;cursor:pointer;display:flex;gap:11px;align-items:center}
+nav.steps button:hover{background:var(--bright-teal)}
+nav.steps button[aria-current="step"]{background:var(--deep-teal);color:#fff;font-weight:600}
+nav.steps .num{width:28px;height:28px;border-radius:50%;border:2px solid var(--dark-teal);display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600;flex:0 0 auto;color:var(--dark-teal);background:#fff}
+nav.steps button[aria-current="step"] .num{border-color:#fff;color:var(--deep-teal)}
+nav.steps .num.done{background:var(--a11y-green);border-color:var(--a11y-green);color:#fff}
+nav.steps .opt{font-size:.72rem;font-weight:500;opacity:.8;margin-left:auto;white-space:nowrap}
+
+.card{background:#fff;border:1px solid var(--bright-teal);border-radius:16px;padding:30px 30px 26px;box-shadow:0 1px 2px rgba(9,60,68,.06),0 8px 24px rgba(9,60,68,.06)}
+@media (max-width:600px){ .card{padding:20px 16px} }
+.card h2{margin:0;font-size:1.65rem;line-height:1.2;color:var(--deep-teal);font-weight:700}
+.card h2::after{content:"";display:block;width:56px;height:5px;border-radius:3px;background:var(--green);margin:10px 0 14px}
+.card .lead{margin:0 0 20px;color:var(--gray);font-size:1.02rem}
+.card h3{font-size:1.1rem;margin:28px 0 6px;color:var(--dark-teal);font-weight:700}
+.hero{background:var(--deep-teal);color:#fff;border-radius:16px;padding:26px 30px;margin-bottom:18px;border-left:8px solid var(--green)}
+.hero h2{margin:0 0 6px;font-size:1.45rem;color:#fff}
+.hero h2::after{display:none}
+.hero p{margin:0 0 14px;opacity:.95}
+.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:700px){ .flow{grid-template-columns:1fr} }
+.flow li{background:rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:.93rem}
+.flow strong{display:block;font-size:1rem;margin-bottom:2px}
+
+label{display:block;font-weight:600;font-size:.93rem;margin:16px 0 5px;color:var(--black-teal)}
+.hint{font-weight:400;color:var(--light-gray);font-size:.86rem;display:block;margin-top:1px}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:inherit;font-weight:400;color:var(--black-teal);background:#fff;border:1.5px solid var(--light-teal);border-radius:10px;padding:10px 12px;transition:box-shadow .15s,border-color .15s}
+input::placeholder,textarea::placeholder{color:var(--light-gray);opacity:.85}
+textarea{min-height:96px;resize:vertical}
+textarea.tall{min-height:210px}
+textarea.mono,pre.mono{font-family:ui-monospace,"SF Mono",Consolas,Menlo,monospace;font-size:.84rem}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--dark-teal);box-shadow:0 0 0 3px var(--bright-teal)}
+button:focus-visible,summary:focus-visible,[tabindex]:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid var(--a11y-orange);outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
 @media (max-width:640px){ .row{grid-template-columns:1fr} }
-.check{display:flex;gap:9px;align-items:flex-start;font-weight:400;margin:10px 0}
-.check input{margin-top:4px}
-.btn{font:inherit;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink);border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600}
-.btn:hover{filter:brightness(1.07)}
-.btn.sec{background:transparent;color:var(--brand)}
-.btn.sec:hover{background:var(--brand-soft);filter:none}
-.btn.danger{border-color:var(--bad);color:var(--bad);background:transparent}
-.btn.small{padding:5px 10px;font-size:.85rem}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.nav-bottom{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
-.note{border-left:4px solid var(--brand);background:var(--brand-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.93rem}
-.note.warn{border-color:var(--warn)}
-.note.lock{border-color:var(--ok)}
-.drop{border:2px dashed var(--line);border-radius:10px;padding:16px;text-align:center;color:var(--muted);margin:8px 0}
-.drop.over{border-color:var(--brand);background:var(--brand-soft)}
-.unit{border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0;background:var(--bg)}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:12px 0}
+.check input{margin-top:4px;accent-color:var(--dark-teal);width:18px;height:18px}
+
+.btn{font:inherit;font-weight:600;border:2px solid var(--orange);background:var(--orange);color:var(--black-teal);border-radius:10px;padding:9px 18px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn:hover,.btn:focus-visible{background:var(--a11y-orange);border-color:var(--a11y-orange);color:#fff}
+.btn.sec{background:#fff;border-color:var(--dark-teal);color:var(--dark-teal)}
+.btn.sec:hover,.btn.sec:focus-visible{background:var(--dark-teal);border-color:var(--dark-teal);color:#fff}
+.btn.danger{background:#fff;border-color:var(--a11y-orange);color:var(--a11y-orange)}
+.btn.danger:hover,.btn.danger:focus-visible{background:var(--a11y-orange);color:#fff}
+.btn.small{padding:5px 12px;font-size:.86rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.nav-bottom{display:flex;justify-content:space-between;margin-top:28px;padding-top:20px;border-top:1px solid var(--bright-teal);gap:10px}
+
+.note{border-left:5px solid var(--light-teal);background:var(--white-teal);padding:12px 16px;border-radius:0 10px 10px 0;margin:16px 0;font-size:.95rem}
+.note.warn{border-color:var(--orange);background:var(--white-orange)}
+.note.lock{border-color:var(--a11y-green);background:var(--white-teal)}
+.drop{border:2px dashed var(--light-teal);border-radius:12px;padding:20px;text-align:center;color:var(--gray);margin:8px 0;background:var(--white-teal)}
+.drop.over{border-style:solid;background:var(--bright-teal)}
+.unit{border:1px solid var(--bright-teal);border-left:5px solid var(--light-teal);border-radius:12px;padding:16px;margin:14px 0;background:var(--white-teal)}
 .unit .head{display:flex;gap:8px;align-items:center}
-.unit .head input{flex:1}
-.qa{border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;background:var(--bg)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:4px 11px;font:inherit;font-size:.85rem;cursor:pointer}
-.chip:hover{border-color:var(--brand);background:var(--brand-soft)}
-pre.mono{background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px;white-space:pre-wrap;word-break:break-word;max-height:380px;overflow:auto;margin:6px 0}
+.unit .head input{flex:1;font-weight:600}
+.qa{border:1px solid var(--bright-teal);border-left:5px solid var(--light-teal);border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--white-teal)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1.5px solid var(--light-teal);background:#fff;color:var(--dark-teal);border-radius:999px;padding:5px 13px;font:inherit;font-size:.86rem;font-weight:500;cursor:pointer}
+.chip:hover{background:var(--dark-teal);border-color:var(--dark-teal);color:#fff}
+pre.mono{background:var(--white-teal);color:var(--black-teal);border:1px solid var(--bright-teal);border-radius:12px;padding:14px;white-space:pre-wrap;word-break:break-word;max-height:380px;overflow:auto;margin:8px 0}
+
+.meter{height:12px;background:var(--bright-teal);border-radius:99px;overflow:hidden;margin:6px 0 4px}
+.meter>i{display:block;height:100%;background:var(--light-teal);border-radius:99px}
+.meter.warn>i{background:var(--orange)}
+.meter.bad>i{background:var(--a11y-orange)}
 .counter{font-weight:700}
-.counter.ok{color:var(--ok)} .counter.warn{color:var(--warn)} .counter.bad{color:var(--bad)}
-.checklist{list-style:none;padding:0;margin:8px 0}
-.checklist li{padding:5px 0;display:flex;gap:9px}
-.checklist .ok{color:var(--ok)} .checklist .warn{color:var(--warn)} .checklist .bad{color:var(--bad)}
-.found{font-size:.9rem;margin:8px 0}
-.status{font-size:.88rem;color:var(--muted);margin:4px 0}
-.status.err{color:var(--bad)}
-details{margin:10px 0}
-summary{cursor:pointer;font-weight:600}
-footer{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.85rem}
+.counter.ok{color:var(--dark-teal)} .counter.warn{color:var(--a11y-orange)} .counter.bad{color:var(--a11y-orange)}
+.checklist{list-style:none;padding:0;margin:10px 0;display:grid;gap:6px}
+.checklist li{display:flex;gap:12px;align-items:center;padding:8px 12px;border-radius:10px;background:var(--white-teal)}
+.checklist .mk{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex:0 0 auto;color:#fff}
+.checklist .mk.ok{background:var(--a11y-green)} .checklist .mk.warn{background:var(--a11y-orange)} .checklist .mk.bad{background:var(--a11y-orange)}
+.found{font-size:.92rem;margin:8px 0}
+.status{font-size:.9rem;color:var(--light-gray);margin:4px 0}
+.status.err{color:var(--a11y-orange);font-weight:600}
+details{margin:12px 0}
+summary{cursor:pointer;font-weight:600;color:var(--dark-teal)}
+footer{max-width:1080px;margin:0 auto;padding:10px 20px 40px;color:var(--light-gray);font-size:.86rem}
 .sr{position:absolute;left:-9999px}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <div>
-      <h1>SchoolAI Course FAQ Builder</h1>
-      <p>Answer a few questions and get a Student FAQ Space that is specific to your course.</p>
-    </div>
-    <div class="tools">
-      <button class="btn sec small" data-action="saveProject" type="button">Save project file</button>
-      <button class="btn sec small" data-action="loadProject" type="button">Load project file</button>
-      <button class="btn danger small" data-action="startOver" type="button">Start over</button>
-      <input type="file" id="projectFile" accept=".json,application/json" class="sr" tabindex="-1" aria-label="Load project file">
-    </div>
+    <h1>SchoolAI Course FAQ Builder</h1>
+    <p>Answer a few questions and get a Student FAQ Space that is specific to your course.</p>
   </div>
 </header>
 <main>
-  <nav class="steps" aria-label="Steps"><ol id="stepList"></ol></nav>
+  <nav class="steps" aria-label="Steps"><div id="progress"></div><ol id="stepList"></ol></nav>
   <section id="panel" aria-live="polite"></section>
 </main>
 <footer>
   Everything you type stays in your browser. Nothing is sent to a server. Your progress is saved on this computer so you can come back to it.
-  Reading PDF and Word files uses two open-source libraries loaded from cdnjs; your files themselves are not uploaded.
+  The page loads the Figtree font from Google Fonts and two open-source libraries from cdnjs to read PDF and Word files; your files and text are never uploaded.
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
@@ -164,12 +186,14 @@ function defaults() {
     step: 0,
     course: {
       name: '', org: 'Michigan Virtual', subject: 'general', subjectTouched: false,
-      ap: false, proctored: false, requiredDates: false,
       length: 'Semester (18 weeks)', gradeBand: 'high school',
       lms: 'Brightspace', pacing: 'the Student Pacing Tool in the top navigation',
       description: '', prerequisites: '', costs: '', tech: '', scoring: '', objectives: ''
     },
     syllabusText: '',
+    welcomeText: '',
+    resourcesText: '',
+    lists: { assignments: '', quizzes: '', discussions: '' },
     instructor: {
       paste: '', name: '', title: '', email: '', phone: '',
       preferred: 'private message in the Student Learning Portal',
@@ -181,7 +205,7 @@ function defaults() {
     hide: '',
     extraRules: '',
     qa: [{ q: '', a: '' }],
-    includeSyllabus: false
+    includeSyllabus: true
   };
 }
 
@@ -312,6 +336,95 @@ function parseInstructor(raw) {
   return out;
 }
 
+
+/* ---- Brightspace list pages -> course guide ---- */
+var NAV_NOISE_RE = /^(home|student pacing tool|class homepage|quick eval|course activities|course tools|course admin|assignments?|quizzes|quiz|discussions?|new|edit|bulk edit|more actions|filter|search( for.*)?|name|due date|due|completed|evaluated|submissions?|new submissions|feedback published|not submitted|unread|total|evaluat(ed|ion)|feedback|hidden|visible|status|actions?|show|hide|sort|print|settings|import|export|create|add|delete|copy|back to top|folder|category|group|individual|attempts?|published|draft|brian harrod|michigan virtual|my courses|help|log ?out|current quizzes|test|quiz template|(assignment|discussion|topic) template|class discussion board|discussions? list.*|(assignments?|quizzes) list.*|unread for topic.*|skip to .*|toggle .*|manage .*|\d+|\d+\s*\/\s*\d+|[-\u2013\u2014]+)$/i;
+var NAV_PREFIX_RE = /^(new|edit|bulk edit|more actions)\s*(assignment|quiz|topic|forum|folder|categor|actions)|edit categories|^unread for topic/i;
+var TITLE_RE = /\((sem|semester|tri|trimester|summer)\s*\d*\)/i;
+var DATE_RE = /^((mon|tue|wed|thu|fri|sat|sun)[a-z]*,?\s+)?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2}(,\s*\d{4})?|\d{1,2}\/\d{1,2}\/\d{2,4}|^\d{1,2}:\d{2}\s*(am|pm)/i;
+var STAT_RE = /^\d+\s*(submissions?|unread|completed|not submitted|attempts?|points?|%|\/)|^out of \d+|^\d+ (of|out of) \d+/i;
+var CUE_RE = /^\s*0*\d+\.\d+|\s[-\u2013\u2014]\s|journal|assignment|quiz|test\b|exam|discussion|worksheet|project|reflection|entry|survey|video|review|practice|lab\b|activity|check\b|plan\b|diary|calendar|flyer|poster|presentation|paper|essay|exercise|checkpoint|portfolio|collaboration|investigate|setup|set up/i;
+
+function isNoiseLine(l, courseName) {
+  if (courseName && l.toLowerCase() === courseName.toLowerCase()) return true;
+  return NAV_NOISE_RE.test(l) || NAV_PREFIX_RE.test(l) || TITLE_RE.test(l) || DATE_RE.test(l) || STAT_RE.test(l) || l.length < 4 || l.length > 140 || !/[a-z]/i.test(l);
+}
+function cleanItemName(l) {
+  return l.replace(/\s+hidden\b.*$/i, '').replace(/\s+includes assessment.*$/i, '').replace(/\s*[\(\[]?\s*not in use\s*[\)\]]?\s*/i, ' ')
+    .replace(/\s+[-\u2013\u2014]\s*(not submitted|submitted|due.*)$/i, '')
+    .replace(/^[\s\-\u2013\u2014:]+|[\s\-\u2013\u2014:]+$/g, '').replace(/\s{2,}/g, ' ').trim();
+}
+function parseListPage(raw, courseName) {
+  var ls = clean(raw).split('\n').map(function (l) { return l.split('\t')[0].trim(); }).filter(Boolean);
+  var order = [], byName = {}, alternates = false;
+  for (var i = 0; i < ls.length; i++) {
+    var l = ls[i];
+    if (isNoiseLine(l, courseName) || !CUE_RE.test(l)) continue;
+    if (/\((av|alt)[-\s]?[a-z0-9]*\)|\balternate (version|quiz)/i.test(l)) { alternates = true; continue; }
+    var isHidden = /\bhidden\b/i.test(l) || /not in use/i.test(l) || (ls[i + 1] && /^hidden\b/i.test(ls[i + 1]));
+    var name = cleanItemName(l);
+    if (!name) continue;
+    var key = name.toLowerCase();
+    if (byName[key]) { if (isHidden) byName[key].hidden = true; continue; }
+    byName[key] = { name: name, hidden: !!isHidden };
+    order.push(byName[key]);
+  }
+  return {
+    items: order.filter(function (e) { return !e.hidden; }).map(function (e) { return e.name; }),
+    hidden: order.filter(function (e) { return e.hidden; }).map(function (e) { return e.name; }).concat(alternates ? ['Alternate quiz versions (items marked AV or alternate)'] : []),
+    totalLines: ls.length
+  };
+}
+function unitNum(name) {
+  if (/getting started/i.test(name)) return 0;
+  var m = String(name).match(/(?:unit|module|week|chapter|segment|lesson|part|section|topic)\s*0*(\d+)/i);
+  return m ? parseInt(m[1], 10) : null;
+}
+function itemNum(item) {
+  var m = item.match(/^\s*0*(\d+)\.\d+/);
+  if (m) return parseInt(m[1], 10);
+  m = item.match(/\b(?:unit|module)\s*0*(\d+)\b/i);
+  return m ? parseInt(m[1], 10) : null;
+}
+function unitTitle(name) {
+  return String(name).replace(/^(?:unit|module|week|chapter|segment|lesson|part|section|topic)\s*\d+\s*[:.\-\u2013\u2014)]*\s*/i, '').trim().toLowerCase();
+}
+function buildGuide(existing, lists, courseName) {
+  var named = existing.filter(function (u) { return filled(u.name); });
+  var units = named.map(function (u) { return { name: u.name, assignments: [], quizzes: [], discussions: [], created: false }; });
+  var hidden = [], counts = { assignments: 0, quizzes: 0, discussions: 0 };
+  var other = null;
+  function mk(name) { var u = { name: name, assignments: [], quizzes: [], discussions: [], created: true }; if (name === 'Getting Started') units.unshift(u); else units.push(u); return u; }
+  function find(item) {
+    var n = itemNum(item);
+    if (n !== null) {
+      for (var i = 0; i < units.length; i++) if (unitNum(units[i].name) === n) return units[i];
+      return mk(n === 0 ? 'Getting Started' : 'Unit ' + n);
+    }
+    var low = item.toLowerCase(), best = null, len = 0;
+    units.forEach(function (u) { var t = unitTitle(u.name); if (t.length >= 6 && low.indexOf(t) !== -1 && t.length > len) { best = u; len = t.length; } });
+    if (best) return best;
+    if (!other) other = mk('Other course items');
+    return other;
+  }
+  ['assignments', 'quizzes', 'discussions'].forEach(function (kind) {
+    var r = parseListPage(lists[kind] || '', courseName);
+    r.items.forEach(function (it) { find(it)[kind].push(it); counts[kind]++; });
+    r.hidden.forEach(function (h) { hidden.push(h); });
+  });
+  if (!named.length) {
+    units.sort(function (a, b) {
+      var an = a.name === 'Other course items' ? 9999 : (unitNum(a.name) == null ? 5000 : unitNum(a.name));
+      var bn = b.name === 'Other course items' ? 9999 : (unitNum(b.name) == null ? 5000 : unitNum(b.name));
+      return an - bn;
+    });
+  }
+  return {
+    units: units.map(function (u) { return { name: u.name, assignments: u.assignments.join('\n'), quizzes: u.quizzes.join('\n'), discussions: u.discussions.join('\n') }; }),
+    hidden: hidden, counts: counts
+  };
+}
+
 function suggestSubject(name) {
   var n = String(name || '').toLowerCase();
   var rules = [
@@ -347,9 +460,6 @@ function navExample(s) {
 
 function subjectRules(s) {
   var rules = (SUBJECTS[s.course.subject] || SUBJECTS.general).rules.slice();
-  if (s.course.ap) rules.push('This course does not include the AP Exam. The school or parent registers the student for a local exam. Send AP exam questions to the instructor.');
-  if (s.course.proctored) rules.push('Some exams are proctored. Send questions about how a proctored exam works to the instructor.');
-  if (s.course.requiredDates) rules.push('This course has required due dates. Never quote or estimate dates; send students to ' + (clean(s.course.pacing) || 'the course calendar') + '.');
   return rules;
 }
 
@@ -391,7 +501,7 @@ function buildInstructions(s) {
       '- Keep answers short. Use numbered steps for "how do I..." questions.',
       '- Tell students where to click in ' + (clean(s.course.lms) || 'the course site') + ' (' + navExample(s) + ').',
       '- For pacing and due-date questions, send students to ' + pacing + '. Do not quote due dates.'
-    ].join('\n') : [
+    ].concat(filled(s.resourcesText) ? ['- When a student needs extra help or practice, point them to the ADDITIONAL RESOURCES in your document.'] : []).join('\n') : [
       'WHAT YOU DO',
       '- Answer course questions using ONLY the attached document "' + kt + '".',
       '- Keep answers short, with numbered steps for "how do I..." questions, and say where to click.',
@@ -486,14 +596,14 @@ function buildKnowledge(s) {
     var ol = lines(c.objectives).map(stripBullet);
     snap.push('- Course objectives: ' + (ol.length > 1 ? ol[0].replace(/\.*$/, '') + ': ' + ol.slice(1).join('; ') : ol[0]));
   }
-  if (c.requiredDates) snap.push('- This course has required due dates. Students find dates in ' + (clean(c.pacing) || 'the course calendar') + '.');
-  if (c.ap) snap.push('- AP course. It does not include the AP Exam; the school or parent registers the student for a local exam.');
-  if (c.proctored) snap.push('- Some exams are proctored. Students ask the instructor how.');
+  snap.push('- Due dates: students find them in ' + (clean(c.pacing) || 'the course calendar') + '. Do not quote dates.');
   P.push(snap.join('\n'));
 
   if (filled(s.shared.text)) P.push(clean(s.shared.text));
   P.push(instructorBlock(s));
   P.push(guideBlock(s));
+  if (filled(s.welcomeText)) P.push('WELCOME LETTER (from the instructor)\n' + clean(s.welcomeText));
+  if (filled(s.resourcesText)) P.push('ADDITIONAL RESOURCES (point students here for extra help or practice)\n' + clean(s.resourcesText));
 
   var hide = lines(s.hide).map(stripBullet);
   P.push('ITEMS TO IGNORE (never mention these)\n' + (hide.length
@@ -588,7 +698,7 @@ function setPath(path, val) {
 /* ------------------------------------------------------------------ */
 /* UI building blocks                                                 */
 /* ------------------------------------------------------------------ */
-var STEPS = ['Course', 'Syllabus', 'Instructor', 'Course guide', 'Facts and policies', 'Rules', 'Student Q&A', 'Review and export'];
+var STEPS = ['Course', 'Documents', 'Instructor', 'Course guide', 'Facts and policies', 'Rules', 'Student Q&A', 'Review and export'];
 
 function txt(label, path, opts) {
   opts = opts || {};
@@ -625,7 +735,9 @@ views[0] = function () {
   var lens = ['Semester (18 weeks)', 'Trimester (12 weeks)', 'Summer (10 weeks)', 'Year-long', 'Other'].map(function (l) {
     return '<option' + (c.length === l ? ' selected' : '') + '>' + esc(l) + '</option>';
   }).join('');
-  return '<div class="card"><h2>1. Tell us about your course</h2>' +
+  return '<div class="hero"><h2>Build a Student FAQ Space for your course</h2><p>Answer a few questions, add your documents, and get two things to paste into SchoolAI. It takes about 20 minutes.</p>' +
+    '<ol class="flow"><li><strong>1. Add your course</strong>Course details, syllabus, and your contact info.</li><li><strong>2. Build the guide</strong>Paste your Brightspace lists and add student questions.</li><li><strong>3. Copy into SchoolAI</strong>Paste the instructions and upload the knowledge file.</li></ol></div>' +
+    '<div class="card"><h2>1. Tell us about your course</h2>' +
     '<p class="lead">This sets the assistant\u2019s name for the course and chooses the right guardrails for your subject.</p>' +
     txt('Course name', 'course.name', { placeholder: 'Example: AP Computer Science Principles (Sem 1)' }) +
     '<div id="subjectNote" class="status"></div>' +
@@ -635,29 +747,27 @@ views[0] = function () {
     '<div class="row">' + txt('School or organization', 'course.org') + txt('Student level', 'course.gradeBand', { hint: 'Example: high school, middle school' }) + '</div>' +
     '<div class="row">' + txt('Learning platform', 'course.lms', { hint: 'Example: Brightspace, Canvas, Google Classroom' }) +
     txt('Where do students find due dates?', 'course.pacing', { hint: 'The assistant sends students here instead of guessing dates.' }) + '</div>' +
-    check('This is an AP course', 'course.ap', 'Adds a rule that the course does not include the AP exam.') +
-    check('This course has proctored exams', 'course.proctored') +
-    check('This course has required due dates', 'course.requiredDates', 'Adds a rule that the assistant never quotes dates.') +
     nav(0) + '</div>';
 };
 
+function docSection(key, title, hint) {
+  return '<h3>' + esc(title) + '</h3><p class="hint" style="margin:0 0 6px">' + esc(hint) + '</p>' +
+    '<div class="drop" data-drop="' + key + '" tabindex="0">Drop files here (.pdf, .docx, .html, .txt, .md) or <button class="btn sec small" type="button" data-action="pickFiles" data-key="' + key + '">choose files</button>' +
+    '<input type="file" id="files-' + key + '" class="sr" tabindex="-1" multiple accept=".pdf,.docx,.html,.htm,.txt,.md" aria-label="Choose files for ' + esc(title) + '"></div>' +
+    '<div id="status-' + key + '" class="status"></div>' +
+    area(title + ' text', key, { cls: 'tall mono', hint: 'Uploaded text appears here. You can also paste or edit it.' });
+}
 views[1] = function () {
-  var c = state.course;
-  return '<div class="card"><h2>2. Add your syllabus</h2>' +
-    '<p class="lead">Paste it or upload a file. The app looks for common labeled sections (objectives, prerequisites, costs, outline) and fills in what it can. You will review everything before it goes anywhere.</p>' +
-    '<div class="drop" id="drop" tabindex="0">Drop files here (.pdf, .docx, .html, .txt, .md) or <button class="btn sec small" type="button" data-action="pickFiles">choose files</button>' +
-    '<input type="file" id="syllabusFiles" class="sr" tabindex="-1" multiple accept=".pdf,.docx,.html,.htm,.txt,.md" aria-label="Choose syllabus files"></div>' +
-    '<div id="fileStatus" class="status"></div>' +
-    area('Syllabus text', 'syllabusText', { cls: 'tall mono', hint: 'Uploaded text appears here. You can also paste or edit.' }) +
-    '<p><button class="btn" type="button" data-action="parseSyllabus">Find course details in this text</button> ' +
-    '<button class="btn sec" type="button" data-action="clearSyllabus">Clear text</button></p>' +
+  return '<div class="card"><h2>2. Add your documents</h2>' +
+    '<p class="lead">Paste text or upload files for each document. Everything you add becomes part of the knowledge file, so remove anything out of date.</p>' +
+    docSection('syllabusText', 'Syllabus', 'The full text goes into the knowledge file so the assistant knows your objectives, prerequisites, and costs. The app can also pull unit names from it for the course guide.') +
+    '<p><button class="btn" type="button" data-action="parseSyllabus">Find unit names in this syllabus</button> ' +
+    '<button class="btn sec" type="button" data-action="clearText" data-key="syllabusText">Clear text</button></p>' +
     '<div id="found" class="found"></div>' +
-    '<h3>Course details</h3><p class="hint" style="margin:0">Edit anything the app found, or fill these in yourself. All optional.</p>' +
-    area('About the course', 'course.description') +
-    '<div class="row">' + area('Prerequisites', 'course.prerequisites') + area('Additional costs', 'course.costs') + '</div>' +
-    '<div class="row">' + area('What students need (technology, supplies, accounts)', 'course.tech') + area('How scoring works', 'course.scoring') + '</div>' +
-    area('Course objectives', 'course.objectives') +
-    '<div class="note warn">Syllabi are sometimes out of date. If yours mentions old software or policies, remove them here. The full syllabus text is only added to the knowledge file if you choose that on the last step.</div>' +
+    docSection('welcomeText', 'Welcome letter', 'The letter students see when they start. It answers many first-week questions.') +
+    '<p><button class="btn sec" type="button" data-action="clearText" data-key="welcomeText">Clear text</button></p>' +
+    docSection('resourcesText', 'Additional Resources', 'Paste or upload the list of resources, with titles, short descriptions, and where to find them. The assistant points students to these when they need extra help.') +
+    '<p><button class="btn sec" type="button" data-action="clearText" data-key="resourcesText">Clear text</button></p>' +
     nav(1) + '</div>';
 };
 
@@ -689,7 +799,13 @@ views[3] = function () {
   }).join('');
   return '<div class="card"><h2>4. Course guide</h2>' +
     '<p class="lead">List what students actually see, using the same names they see in your course. The assistant only discusses items listed here.</p>' +
-    '<details><summary>Quick start: paste an outline and split it into units</summary>' +
+    '<h3>Fastest way: paste your Brightspace lists</h3>' +
+    '<p class="hint" style="margin:0 0 6px">Open each page from the Course Activities menu in your course, select all (Ctrl+A, or Cmd+A on a Mac), copy, and paste it into the matching box. The app keeps item names, drops menu text, sorts items into units by their numbers or titles, and sets aside anything hidden or marked NOT IN USE. Then check each unit below.</p>' +
+    '<div class="row">' + area('Assignments page', 'lists.assignments', { cls: 'mono' }) + area('Quizzes page', 'lists.quizzes', { cls: 'mono' }) + '</div>' +
+    area('Discussions page', 'lists.discussions', { cls: 'mono' }) +
+    '<p><button class="btn" type="button" data-action="buildGuide">Build the course guide from these lists</button></p><div id="guideMsg" class="found"></div>' +
+    '<h3>Your units</h3>' +
+    '<details><summary>Or paste an outline (table of contents) and split it into units</summary>' +
     '<p class="hint">Start a unit with a line like "Unit 1: Title" or "Module 2". Lines below it are sorted into assignments, quizzes and tests, or discussions by their wording. Fix anything misplaced after.</p>' +
     area('Outline', 'outlinePaste', { cls: 'mono', placeholder: 'Unit 1: Digital Information\n1.1 Assignment: Code Studio Setup\nUnit 1 Test\n1.1 Discussion: Innovations' }) +
     '<p><button class="btn" type="button" data-action="splitOutline">Split into units</button></p></details>' +
@@ -743,7 +859,7 @@ views[7] = function () {
   var cls = ins.over ? 'bad' : (ins.length > 4500 ? 'warn' : 'ok');
   var ck = checks(state).map(function (c) {
     var mark = c.lvl === 'ok' ? '\u2713' : (c.lvl === 'warn' ? '!' : '\u2717');
-    return '<li><span class="' + c.lvl + '" aria-hidden="true">' + mark + '</span><span>' + esc(c.text) +
+    return '<li><span class="mk ' + c.lvl + '" aria-hidden="true">' + mark + '</span><span>' + esc(c.text) +
       (c.lvl !== 'ok' ? ' <button class="chip" type="button" data-action="go" data-to="' + c.step + '">Fix</button>' : '') + '</span></li>';
   }).join('');
   var tq = testQuestions(state).map(function (t) { return '<li><strong>' + esc(t[0]) + '</strong><br><span class="hint">Expect: ' + esc(t[1]) + '</span></li>'; }).join('');
@@ -751,11 +867,12 @@ views[7] = function () {
   return '<div class="card"><h2>8. Review and export</h2>' +
     '<p class="lead">You get two pieces. Paste the first into the \u201CDescribe your Space\u201D box in SchoolAI, and attach the second as the Space\u2019s knowledge file.</p>' +
     '<h3>Checklist</h3><ul class="checklist">' + ck + '</ul>' +
-    check('Also include the full syllabus text in the knowledge file', 'includeSyllabus', 'Off by default so out-of-date syllabus text doesn\u2019t override your answers.', true) +
+    check('Also include the full syllabus text in the knowledge file', 'includeSyllabus', 'On by default so the assistant knows your objectives, prerequisites, and costs. Turn it off if your syllabus has out-of-date information.', true) +
     '<h3>Part A: Space instructions</h3>' +
     '<p>Characters: <span class="counter ' + cls + '">' + ins.length.toLocaleString() + ' / ' + LIMIT.toLocaleString() + '</span>' +
     (ins.compact ? ' <span class="hint">(shortened wording was used to fit)</span>' : '') +
     (ins.over ? ' <span class="counter bad">Over by ' + ins.over + '. Shorten your extra rules.</span>' : '') + '</p>' +
+    '<div class="meter ' + cls + '" role="img" aria-label="Characters used"><i style="width:' + Math.min(100, Math.round(ins.length / LIMIT * 100)) + '%"></i></div>' +
     '<pre class="mono" id="outA">' + esc(ins.text) + '</pre>' +
     '<p><button class="btn" type="button" data-action="copyA">Copy instructions</button> <button class="btn sec" type="button" data-action="dlA" data-name="' + esc(fname) + '_Space_Instructions.txt">Download .txt</button></p>' +
     '<h3>Part B: Knowledge file</h3>' +
@@ -775,10 +892,29 @@ views[7] = function () {
 /* ------------------------------------------------------------------ */
 /* Rendering                                                          */
 /* ------------------------------------------------------------------ */
+var REQUIRED = [0, 2, 3, 4, 6];
+var OPTIONAL = [1, 5];
+function stepDone(i) {
+  var st = state;
+  switch (i) {
+    case 0: return filled(st.course.name);
+    case 1: return filled(st.syllabusText) || filled(st.welcomeText) || filled(st.resourcesText);
+    case 2: return filled(st.instructor.name);
+    case 3: return st.units.some(function (u) { return filled(u.name) && (filled(u.assignments) || filled(u.quizzes) || filled(u.discussions)); });
+    case 4: return filled(st.shared.text);
+    case 5: return filled(st.hide) || filled(st.extraRules);
+    case 6: return st.qa.some(function (x) { return filled(x.q) && filled(x.a); });
+    default: return false;
+  }
+}
 function renderSteps() {
+  var done = REQUIRED.filter(stepDone).length;
+  var pr = document.getElementById('progress');
+  if (pr) pr.innerHTML = '<strong>' + done + ' of ' + REQUIRED.length + '</strong> required sections done<div class="bar"><i style="width:' + Math.round(done / REQUIRED.length * 100) + '%"></i></div>';
   var ol = document.getElementById('stepList');
   ol.innerHTML = STEPS.map(function (n, i) {
-    return '<li><button type="button" data-action="go" data-to="' + i + '"' + (i === state.step ? ' aria-current="step"' : '') + '><span class="num">' + (i + 1) + '</span><span>' + esc(n) + '</span></button></li>';
+    var d = stepDone(i);
+    return '<li><button type="button" data-action="go" data-to="' + i + '"' + (i === state.step ? ' aria-current="step"' : '') + '><span class="num' + (d ? ' done' : '') + '">' + (d ? '\u2713' : (i + 1)) + '</span><span>' + esc(n) + '</span>' + (OPTIONAL.indexOf(i) !== -1 ? '<span class="opt">optional</span>' : '') + '</button></li>';
   }).join('');
 }
 function render(keepScroll) {
@@ -858,8 +994,8 @@ async function readFile(f) {
   if (/\.doc$/.test(name)) throw new Error('Old .doc files are not supported. Save it as .docx or PDF and try again.');
   throw new Error('This file type is not supported. Use PDF, DOCX, HTML, TXT, or MD.');
 }
-async function handleFiles(files) {
-  var st = document.getElementById('fileStatus');
+async function handleFiles(files, key) {
+  var st = document.getElementById('status-' + key);
   var arr = Array.prototype.slice.call(files);
   for (var n = 0; n < arr.length; n++) {
     var f = arr[n];
@@ -867,10 +1003,10 @@ async function handleFiles(files) {
     try {
       var t = await readFile(f);
       if (!t) throw new Error('No text was found in ' + f.name + '. If it is a scan or image, paste the text instead.');
-      state.syllabusText = (state.syllabusText ? state.syllabusText + '\n\n' : '') + (arr.length > 1 || state.syllabusText ? '--- ' + f.name + ' ---\n' : '') + t;
-      var ta = document.querySelector('[data-k="syllabusText"]');
-      if (ta) ta.value = state.syllabusText;
-      st.textContent = 'Added text from ' + f.name + '. Now choose \u201CFind course details in this text.\u201D';
+      state[key] = (state[key] ? state[key] + '\n\n' : '') + (arr.length > 1 || state[key] ? '--- ' + f.name + ' ---\n' : '') + t;
+      var ta = document.querySelector('[data-k="' + key + '"]');
+      if (ta) ta.value = state[key];
+      st.textContent = 'Added text from ' + f.name + '.' + (key === 'syllabusText' ? ' Now choose \u201CFind unit names in this syllabus.\u201D' : '');
       save();
     } catch (e) {
       st.className = 'status err'; st.textContent = e.message;
@@ -878,13 +1014,14 @@ async function handleFiles(files) {
   }
 }
 function wireDrop() {
-  var d = document.getElementById('drop');
-  if (!d) return;
-  ['dragenter', 'dragover'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add('over'); }); });
-  ['dragleave', 'drop'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove('over'); }); });
-  d.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
-  var inp = document.getElementById('syllabusFiles');
-  inp.addEventListener('change', function () { if (inp.files.length) handleFiles(inp.files); inp.value = ''; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-drop]'), function (d) {
+    var key = d.getAttribute('data-drop');
+    ['dragenter', 'dragover'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove('over'); }); });
+    d.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files, key); });
+    var inp = document.getElementById('files-' + key);
+    inp.addEventListener('change', function () { if (inp.files.length) handleFiles(inp.files, key); inp.value = ''; });
+  });
 }
 
 /* ------------------------------------------------------------------ */
@@ -916,30 +1053,21 @@ function applyIfEmpty(path, val, keepLines) {
 
 var actions = {
   go: function (el) { state.step = +el.dataset.to; save(); render(false); },
-  pickFiles: function () { document.getElementById('syllabusFiles').click(); },
-  clearSyllabus: function () { state.syllabusText = ''; save(); render(true); },
+  pickFiles: function (el) { document.getElementById('files-' + el.dataset.key).click(); },
+  clearText: function (el) { state[el.dataset.key] = ''; save(); render(true); },
   parseSyllabus: function () {
     var f = extractSyllabus(state.syllabusText);
     var box = document.getElementById('found');
-    var got = [];
-    if (f.description) { applyIfEmpty('course.description', f.description); got.push('description'); }
-    if (f.prerequisites) { applyIfEmpty('course.prerequisites', f.prerequisites); got.push('prerequisites'); }
-    if (f.costs) { applyIfEmpty('course.costs', f.costs); got.push('additional costs'); }
-    if (f.tech) { applyIfEmpty('course.tech', f.tech); got.push('technology needs'); }
-    if (f.scoring) { applyIfEmpty('course.scoring', f.scoring); got.push('scoring'); }
-    if (f.objectives) { applyIfEmpty('course.objectives', f.objectives, true); got.push('objectives'); }
-    if (f.timeCommitment && !/time commitment/i.test(state.shared.text)) { got.push('time commitment (see step 5)'); }
     var onlyBlank = state.units.length === 1 && !filled(state.units[0].name) && !filled(state.units[0].assignments);
     if (f.units && f.units.length) {
-      if (onlyBlank) { state.units = f.units; got.push(f.units.length + ' unit names (add assignments on step 4)'); }
-      else got.push(f.units.length + ' unit names (your existing guide was kept)');
-    }
-    save();
-    if (!got.length) {
-      box.innerHTML = '<div class="note warn">Nothing was found automatically. That is normal for syllabi without labeled sections. Fill in the fields below by hand.</div>';
+      if (onlyBlank) {
+        state.units = f.units; save();
+        box.innerHTML = '<div class="note"><strong>Found ' + f.units.length + ' unit names.</strong> They are in your course guide on step 4, where you can add the assignments, quizzes, and discussions.</div>';
+      } else {
+        box.innerHTML = '<div class="note">Found ' + f.units.length + ' unit names. Your existing course guide was kept.</div>';
+      }
     } else {
-      render(true);
-      document.getElementById('found').innerHTML = '<div class="note"><strong>Found:</strong> ' + esc(got.join(', ')) + '. Check each one below. Blank fields only were filled; anything you already typed was kept.</div>';
+      box.innerHTML = '<div class="note warn">No unit names were found. That is normal for syllabi without a labeled outline. You can add units on step 4.</div>';
     }
   },
   parseInstructor: function () {
@@ -951,6 +1079,27 @@ var actions = {
     save(); render(true);
     var box = document.getElementById('instrFound');
     box.innerHTML = got.length ? '<div class="note"><strong>Found:</strong> ' + esc(got.join(', ')) + '. Check the fields below.</div>' : '<div class="note warn">Nothing was found. Fill in the fields below by hand.</div>';
+  },
+  buildGuide: function () {
+    var L = state.lists;
+    var box = document.getElementById('guideMsg');
+    if (!filled(L.assignments) && !filled(L.quizzes) && !filled(L.discussions)) {
+      box.innerHTML = '<div class="note warn">Paste at least one list first.</div>'; return;
+    }
+    var hasItems = state.units.some(function (u) { return filled(u.assignments) || filled(u.quizzes) || filled(u.discussions); });
+    if (hasItems && !window.confirm('This replaces the items already listed in your units. Unit names are kept. Continue?')) return;
+    var r = buildGuide(state.units, L, clean(state.course.name));
+    state.units = r.units.length ? r.units : state.units;
+    var existing = lines(state.hide).map(stripBullet);
+    r.hidden.forEach(function (h) { if (existing.indexOf(h) === -1) existing.push(h); });
+    state.hide = existing.join('\n');
+    save(); render(true);
+    var total = r.counts.assignments + r.counts.quizzes + r.counts.discussions;
+    document.getElementById('guideMsg').innerHTML = total
+      ? '<div class="note"><strong>Added ' + r.counts.assignments + ' assignments, ' + r.counts.quizzes + ' quizzes and tests, and ' + r.counts.discussions + ' discussions</strong> across ' + r.units.length + ' units.' +
+        (r.hidden.length ? ' Set aside ' + r.hidden.length + ' hidden or unused item(s); they are on the \u201Cnever mention\u201D list in step 6.' : '') +
+        ' Check each unit below and move anything that landed in the wrong place.</div>'
+      : '<div class="note warn">No item names were found in what you pasted. Check that you copied the whole page, or add items by hand below.</div>';
   },
   splitOutline: function () {
     var u = parseOutline(state.outlinePaste);
@@ -977,16 +1126,7 @@ var actions = {
   copyA: function () { copy(buildInstructions(state).text, 'Instructions'); },
   copyB: function () { copy(buildKnowledge(state), 'Knowledge text'); },
   dlA: function (el) { download(el.dataset.name, buildInstructions(state).text); },
-  dlB: function (el) { download(el.dataset.name, buildKnowledge(state)); },
-  saveProject: function () {
-    var n = clean(state.course.name).replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'course';
-    download('faq-builder_' + n + '.json', JSON.stringify(state, null, 2));
-  },
-  loadProject: function () { document.getElementById('projectFile').click(); },
-  startOver: function () {
-    if (!window.confirm('Clear everything and start over? Save a project file first if you want to keep your work.')) return;
-    state = defaults(); save(); render(false);
-  }
+  dlB: function (el) { download(el.dataset.name, buildKnowledge(state)); }
 };
 
 document.addEventListener('click', function (e) {
@@ -999,15 +1139,11 @@ document.addEventListener('input', function (e) {
   var k = e.target.getAttribute && e.target.getAttribute('data-k');
   if (!k || e.target.type === 'checkbox') return;
   setPath(k, e.target.value);
+  renderSteps();
   if (k === 'course.name' && !state.course.subjectTouched) {
     state.course.subject = suggestSubject(e.target.value);
     var selEl = document.querySelector('[data-k="course.subject"]');
     if (selEl) selEl.value = state.course.subject;
-    if (/^\s*ap\b/i.test(e.target.value)) {
-      state.course.ap = true;
-      var apEl = document.querySelector('[data-k="course.ap"]');
-      if (apEl) apEl.checked = true;
-    }
     subjectNote();
   }
   if (k === 'extraRules' || k === 'instructor.name' || k === 'instructor.preferred') ruleLen();
@@ -1016,27 +1152,17 @@ document.addEventListener('input', function (e) {
 document.addEventListener('change', function (e) {
   var t = e.target, k = t.getAttribute && t.getAttribute('data-k');
   if (!k) return;
-  if (t.type === 'checkbox') { setPath(k, t.checked); save(); if (t.getAttribute('data-rr')) render(true); return; }
+  if (t.type === 'checkbox') { setPath(k, t.checked); save(); renderSteps(); if (t.getAttribute('data-rr')) render(true); return; }
   if (t.tagName === 'SELECT') {
     setPath(k, t.value);
     if (k === 'course.subject') { state.course.subjectTouched = true; }
     save();
   }
 });
-document.getElementById('projectFile').addEventListener('change', function (e) {
-  var f = e.target.files[0]; if (!f) return;
-  var r = new FileReader();
-  r.onload = function () {
-    try { state = merge(defaults(), JSON.parse(String(r.result))); state.step = 0; save(); render(false); }
-    catch (err) { window.alert('That file is not a valid project file.'); }
-  };
-  r.readAsText(f); e.target.value = '';
-});
-
 window.FAQ = {
   defaults: defaults, parseOutline: parseOutline, extractSyllabus: extractSyllabus, parseInstructor: parseInstructor,
   suggestSubject: suggestSubject, buildInstructions: buildInstructions, buildKnowledge: buildKnowledge,
-  checks: checks, testQuestions: testQuestions, getState: function () { return state; }, setState: function (s) { state = s; render(false); }, LIMIT: LIMIT
+  checks: checks, testQuestions: testQuestions, parseListPage: parseListPage, buildGuide: buildGuide, getState: function () { return state; }, setState: function (s) { state = s; render(false); }, LIMIT: LIMIT
 };
 
 render(false);
